@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  padding:10%;
+  text-align: center;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<body>
+<div>
+
+<div>
+<form method = "post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        {{ form.as_p }} 
+        <button type="submit">Upload</button> 
+    </form>
+    <br/>
+
+    <h2>Uploaded Images</h2>
+</div>
+<div>
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Text</th>
+  </tr>
+{% for obj in data%}
+  <tr>
+    <td><img src="{{obj.plate_image.url}}" alt="Not Found" width="120" height="120"></td>
+    <td>{{obj.name}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div> 
+</div>
+</body>
+</html>
